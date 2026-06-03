@@ -191,6 +191,49 @@ h3 { font-size: var(--step-1); }
 .wordmark-band .wm-foot a { border-bottom: 1.5px solid var(--accent); padding-bottom: 1px; font-weight: 600; }
 .wordmark-band .wm-foot a:hover { color: var(--accent); }
 
+/* ---------- Scrolling marquee ticker (Maybe-inspired) ---------- */
+.marquee {
+  background: var(--accent); color: var(--white);
+  border-block: 1.5px solid var(--ink);
+  overflow: hidden; padding-block: 0.85rem;
+  display: flex; user-select: none;
+}
+.marquee__track {
+  display: flex; flex-shrink: 0; align-items: center; gap: 2.5rem;
+  white-space: nowrap; padding-right: 2.5rem;
+  animation: marquee-scroll 30s linear infinite;
+}
+.marquee:hover .marquee__track { animation-play-state: paused; }
+.marquee__track span {
+  font-family: var(--font-display); font-weight: 500;
+  font-size: var(--step-1); text-transform: uppercase; letter-spacing: 0.02em;
+}
+.marquee__track .sep { color: color-mix(in srgb, white 65%, var(--accent)); font-size: 0.8em; }
+@keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track { animation: none; }
+  .marquee { justify-content: center; }
+}
+
+/* ---------- "What I do" pill list (Maybe "What We Do") ---------- */
+.do-list { display: flex; flex-direction: column; gap: clamp(0.75rem, 0.5rem + 1vw, 1.25rem); margin-top: clamp(1.5rem, 1rem + 2vw, 2.5rem); }
+.do-pill {
+  display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+  padding: clamp(1rem, 0.7rem + 1.4vw, 1.7rem) clamp(1.4rem, 0.9rem + 2vw, 2.4rem);
+  border-radius: 100px; border: 1.5px solid var(--ink);
+  font-family: var(--font-display); font-weight: 500; line-height: 1.05;
+  font-size: clamp(1.4rem, 1rem + 1.8vw, 2.3rem);
+  transition: background 0.3s var(--ease), color 0.3s, transform 0.3s var(--ease);
+}
+.do-pill:nth-child(even) { background: var(--paper-2); }
+.do-pill .ico {
+  flex: 0 0 auto; width: 1.9em; height: 1.9em; border-radius: 50%;
+  border: 1.5px solid currentColor; display: grid; place-items: center;
+  font-size: 0.62em; transition: transform 0.3s var(--ease), background 0.3s, color 0.3s, border-color 0.3s;
+}
+.do-pill:hover { background: var(--ink); color: var(--paper); transform: translateX(8px); }
+.do-pill:hover .ico { background: var(--accent); border-color: var(--accent); color: var(--white); transform: rotate(45deg); }
+
 /* ---------- Section heading ---------- */
 .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; margin-bottom: clamp(2rem, 1rem + 3vw, 3.5rem); }
 .section-head .eyebrow { margin-bottom: 0.6rem; }
